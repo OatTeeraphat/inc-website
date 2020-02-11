@@ -1,13 +1,20 @@
-const cookieRepository = new CookieRepository()
-const localStorageRepository = new LocalStorageRepository()
+
+import { itemsContainer } from './items/container.js'
+
 const httpRepository = new HttpRepository()
 
 // TODO: add more service here
-const svc0 = new ItemService(httpRepository)
+const itemService = new ItemService(httpRepository)
 
 // TODO: add more presenter here
-const itemPresenter = new ItemPresenter(svc0)
+const itemPresenter = new ItemPresenter(itemService)
 
+const routes = [
+    { path: '/', name: 'auth',  component: itemsContainer },
+]
+
+// vue Router
+const vueRouter = new VueRouter({ routes, mode: 'history' });
 
 Vue.use({    
     install (Vue) {

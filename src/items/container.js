@@ -4,7 +4,7 @@
 Vue.component('item-container', {
     template: `
     <div class="container">
-        <div> loading: {{ $itemPresenter.view.loading }}</div>
+        <!-- <div> loading: {{ $itemPresenter.view.loading }}</div>
         <button type="button" class="btn btn-primary" @click="{{ $itemPresenter.clearItem($event) }}">Clear Item</button>
         <button type="button" class="btn btn-primary" @click="{{ $itemPresenter.getMoreListItems($event) }}">Load More</button>
         <button type="button" class="btn btn-primary" @click="{{ $itemPresenter.disposal($event) }}">Disposal Presenter</button>
@@ -21,14 +21,18 @@ Vue.component('item-container', {
                 <td>{{ i }}</td>
             </tr>
             </tbody>
-        </table>
+        </table> -->
+
+        <!-- <textarea :value="input" @input="update"></textarea> -->
+        <div v-html="compiledMarkdown"></div>
+
     </div>
     `,
     data: function() { 
         return this.$itemPresenter.view
     },
     mounted: function() {
-            this.$itemPresenter.getInitialState()
+        this.$itemPresenter.getInitialState()
     },
     beforeDestroy: function() {
         this.$itemPresenter.disposal()

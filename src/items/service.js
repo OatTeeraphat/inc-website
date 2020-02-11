@@ -8,25 +8,20 @@ class GetItemDataModelAdapter {
 }
 
 class ItemService {
-    constructor(httpRepository) {
+
+    constructor(httpRepository, itemRepository) {
         this.httpRepository = httpRepository
-        this.$listItem = new rxjs.Subject()
+        this.$markdownItem = new Subject()
     }
-    
-    getListItems() {
-        return this.$listItem.pipe(
-            rxjs.operators.delay(200),
-            rxjs.operators.switchMap( it => 
-                this.httpRepository.getItemData().pipe(
-                    rxjs.operators.map( it => it.map( item => item * 2 )),
-                    rxjs.operators.map( model => new GetItemDataModelAdapter(model) ),
-                    rxjs.operators.tap(console.log),
+
+    getRenderMarkdownResult() {
+        return this.$markdownItem.pipe(
+            switchMap( () => {
+                return this.httpRepository.getMarkdownContentBySlug().pipe(
+                    map( it => console.log(it) )
                 )
-            )
+            })
         )
     }
 
-    getMoreListItems() {
-        return this.$listItem.next()
-    }
 }

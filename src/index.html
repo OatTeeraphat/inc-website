@@ -6,45 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Cache-control" content="public">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js" crossorigin="anonymous" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous" ></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script src="https://unpkg.com/marked@0.3.6"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.5.3/rxjs.umd.js" crossorigin="anonymous"></script>
     <script>
 
-        var click_score_stack = 0
+        // var click_score_stack = 0
 
-        rxjs.timer(3000).pipe(
-            rxjs.operators.map(it => "OK"),
-            rxjs.operators.switchMap(it => {
-                return rxjs.ajax.ajax({ url: "http://localhost:3000?="+ click_score_stack, methods: "POST"})
-            })
-        ).subscribe(it => {
-            // console.log(it)
-            click_score_stack = 0
-        })
+        // rxjs.timer(3000).pipe(
+        //     rxjs.operators.map(it => "OK"),
+        //     rxjs.operators.switchMap(it => {
+        //         return rxjs.ajax.ajax({ url: "http://localhost:3000?="+ click_score_stack, methods: "POST"})
+        //     })
+        // ).subscribe(it => {
+        //     // console.log(it)
+        //     click_score_stack = 0
+        // })
 
-        function onStartGame() {
-            console.log("clicked")
-            click_score_stack = click_score_stack + 1
-        }
+        // function onStartGame() {
+        //     console.log("clicked")
+        //     click_score_stack = click_score_stack + 1
+        // }
 
     </script>
     <title>hello</title>
 </head>
 <body class="container">
-    <h1>Vue js</h1>
-    <div id="app">
-        <!-- <!-- <item-container></item-container> --> -->
-        <button onclick="onStartGame()">Click Here</button>
 
-    </div>
+    <!-- <h1>Hello</h1> -->
+    <div id="app"></div>
 
 </body>
+
+    <script src="shared/repositories/httpRepository.js"></script>
+    <script src="shared/utils/rxjs.operators.js"></script>
+
     <script src="items/repository.js"></script>
     <script src="items/service.js"></script>
     <script src="items/presenter.js"></script>
     <script src="items/container.js"></script>
-    <script src="app.js"> </script>
+
+    <script async type="module" src="app.js"> </script>
+
 </html>

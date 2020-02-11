@@ -12,17 +12,18 @@ class ItemPresenter {
     constructor(service) {
         this.service = service
         this.view = new ItemViewModel()
-        this.unsubscribe = new rxjs.Subject()
+        this.unsubscribe = new Subject()
     }
 
     getInitialState() {
-        this.service.getListItems().pipe(
-            rxjs.operators.takeUntil(this.unsubscribe),
-            rxjs.operators.finalize( () => { console.log('complete subscriptions') })
-        ).subscribe( ({ item }) => {
-            this.view.listItems.push(...item)
-            this.view.loading = false
-        })
+
+        console.log('hello')
+        this.service.getRenderMarkdownResult().subscribe(
+            it => {
+                console.log(it)
+            }
+        )
+
     }
 
     getMoreListItems(event) {
