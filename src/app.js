@@ -3,10 +3,10 @@ import { itemsContainer } from './items/container.js'
 
 const httpRepository = new HttpRepository()
 
-
 const routes = [
     { path: '/', name: 'item',  component: itemsContainer },
-    { path: '/doc', name: 'item',  component: itemsContainer },
+    { path: '/doc', name: 'doc',  component: itemsContainer },
+    { path: '/doc/:name', name: 'doc',  component: itemsContainer, props: true  },
 ]
 
 // vue Router

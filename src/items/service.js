@@ -15,8 +15,10 @@ class ItemService {
         this.$markdownItem = new Subject()
     }
 
-    getRenderMarkdownService( slug ) {
-        console.log(this.router)
+    getRenderMarkdownService() {
+
+        let slug = this.router.currentRoute.params.name
+        
         return this.httpRepository.getMarkdownContentBySlug( slug ).pipe(
             map( content => {
                 return marked( content , { sanitize: true })

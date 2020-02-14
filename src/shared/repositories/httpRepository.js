@@ -3,9 +3,15 @@ class HttpRepository {
 
   // TODO: ajax markdown file
 
-  getMarkdownContentBySlug() {
+  getMarkdownContentBySlug( slug="TGIF" ) {
 
-    return of("# hello").pipe( delay(300) )
+    switch (slug) {
+        case "dog":
+            return of(`# hello **${slug}**`).pipe( delay(300) )
+        default:
+            return of(`# hi **${slug}**`).pipe( delay(300) )
+
+    }
 
   }
 
