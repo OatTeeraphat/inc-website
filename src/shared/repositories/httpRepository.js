@@ -1,18 +1,12 @@
 
-class HttpRepository {  
-    
-    
-  getItemData() {
-      return rxjs.of([1,2,3,4,5,6,7]).pipe(
-          rxjs.operators.delay(300)
-      )
-  }
+class HttpRepository {
 
   // TODO: ajax markdown file
+
   getMarkdownContentBySlug() {
-      return of("# hello").pipe(
-          delay(300)
-      )
+
+    return of("# hello").pipe( delay(300) )
+
   }
 
 }

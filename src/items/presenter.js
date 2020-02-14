@@ -5,6 +5,7 @@ class ItemViewModel {
     constructor() {
         this.listItems = []
         this.loading = false
+        this.renderedMarkdownContent = ""
     }
 }
 
@@ -17,22 +18,12 @@ class ItemPresenter {
 
     getInitialState() {
 
-        console.log('hello')
-        this.service.getRenderMarkdownResult().subscribe(
+        this.service.getRenderMarkdownService().subscribe(
             it => {
-                console.log(it)
+                this.view.renderedMarkdownContent = it
             }
         )
 
-    }
-
-    getMoreListItems(event) {
-        this.view.loading = true
-        this.service.getMoreListItems()
-    }
-
-    clearItem(event) {
-        this.view.listItems = []
     }
 
     disposal(event) {

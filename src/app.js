@@ -3,18 +3,20 @@ import { itemsContainer } from './items/container.js'
 
 const httpRepository = new HttpRepository()
 
-// TODO: add more service here
-const itemService = new ItemService(httpRepository)
-
-// TODO: add more presenter here
-const itemPresenter = new ItemPresenter(itemService)
 
 const routes = [
-    { path: '/', name: 'auth',  component: itemsContainer },
+    { path: '/', name: 'item',  component: itemsContainer },
+    { path: '/doc', name: 'item',  component: itemsContainer },
 ]
 
 // vue Router
 const vueRouter = new VueRouter({ routes, mode: 'history' });
+
+// TODO: add more service here
+const itemService = new ItemService(httpRepository, vueRouter)
+
+// TODO: add more presenter here
+const itemPresenter = new ItemPresenter(itemService)
 
 Vue.use({    
     install (Vue) {
@@ -23,5 +25,6 @@ Vue.use({
 })
 
 new Vue({
-    el: '#app'
+    el: '#app',
+    router : vueRouter
 })

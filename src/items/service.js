@@ -1,27 +1,28 @@
 /**
  *  Implement Business Logic Here
  * */
-class GetItemDataModelAdapter {
-    constructor(model) {
-        this.item = model
-    }
-}
+// class GetItemDataModelAdapter {
+//     constructor(model) {
+//         this.item = model
+//     }
+// }
 
 class ItemService {
 
-    constructor(httpRepository, itemRepository) {
+    constructor( httpRepository, router ) {
+        this.router = router
         this.httpRepository = httpRepository
         this.$markdownItem = new Subject()
     }
 
-    getRenderMarkdownResult() {
-        return this.$markdownItem.pipe(
-            switchMap( () => {
-                return this.httpRepository.getMarkdownContentBySlug().pipe(
-                    map( it => console.log(it) )
-                )
+    getRenderMarkdownService( slug ) {
+        console.log(this.router)
+        return this.httpRepository.getMarkdownContentBySlug( slug ).pipe(
+            map( content => {
+                return marked( content , { sanitize: true })
             })
         )
+
     }
 
 }
